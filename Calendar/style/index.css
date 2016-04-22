@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 62.5%;
+}
+@media screen and (max-width: 700px) {
+  #right {
+    display: none;
+  }
+  #left {
+    width: 100%;
+  }
+  #container {
+    width: 100%;
+  }
+  #today {
+    display: none;
+  }
+  #selections {
+    display: flex;
+    justify-content: space-around;
+  }
+  #selections > div {
+    flex: 1;
+  }
+  .data-select {
+    border-radius: 30%;
+    background-color: #ccf;
+    border: none;
+  }
+  #month {
+    margin: 0 5px;
+  }
+}
+@media screen and (min-width: 750px) {
+  #container {
+    display: flex;
+    width: 700px;
+    border: 2px solid #ccf;
+  }
+  #left {
+    flex: 7;
+    padding: 0 8px;
+  }
+  #right {
+    flex: 3;
+  }
+  #today {
+    float: right;
+  }
+  .data-select {
+    float: left;
+    margin-right: 13px;
+    border: 1px solid #aaa;
+  }
+  .data-select,
+  #today {
+    width: 100px;
+  }
+}
+#container {
+  margin: 50px auto;
+  height: 450px;
+}
+#left {
+  height: inherit;
+  font-size: 1.3rem;
+  box-sizing: border-box;
+}
+#right {
+  height: inherit;
+  background-color: #ccf;
+  box-sizing: border-box;
+}
+#selections {
+  width: 100%;
+  border-bottom: 1px solid #ccf;
+  font-size: 1.4rem;
+  padding: 10px 0;
+}
+#selections .data-select,
+#selections #today {
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  cursor: pointer;
+}
+#selections .data-select {
+  position: relative;
+  text-align: center;
+  line-height: 25px;
+}
+#selections .ul-selection {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  list-style: none;
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 10;
+}
+#selections .ul-selection li {
+  text-align: center;
+}
+#selections .ul-selection li:hover {
+  background-color: #ddd;
+}
+.red {
+  color: #f03;
+}
+#year {
+  position: relative;
+}
+#today {
+  background-color: #ccf;
+  border: 1px solid #ccf;
+}
+#calendar {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+  cursor: default;
+}
+#calendar .date {
+  position: relative;
+  height: 70px;
+  border-top: 1px solid #ccc;
+}
+#calendar .date:hover {
+  background-color: rgba(204, 204, 255, 0.2);
+}
+.clickBg {
+  background-color: rgba(204, 204, 255, 0.2);
+}
+.notNowMonth {
+  color: #aaa;
+}
+.nowDay {
+  background-color: #ccf;
+}
+.restDay,
+.workDay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  padding: 2px;
+}
+.restDay {
+  background-color: #f03;
+}
+.workDay {
+  background-color: #aaa;
+}
+#week {
+  height: 40px;
+}
+.hidden {
+  visibility: hidden;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#right-date {
+  font-size: 2rem;
+  text-align: center;
+  margin: 30px 0;
+}
+#right-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 60%;
+  height: 25%;
+  background-color: #5af;
+  border-radius: 4%;
+  box-shadow: 2px 2px 2px #aaa;
+  font-size: 5rem;
+  color: #fff;
+}
+#right-cn-date {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 20px 0;
+}

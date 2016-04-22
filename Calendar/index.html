@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+                                   initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <div id="container" class="clearfix">
+        <div id="left">
+            <div id="selections" class="clearfix">
+                <div id="year" class="data-select">
+                    <div id="current-year"></div>
+                    <ul id="year-list" class="hidden ul-selection">
+                    </ul>
+                </div>
+                <div id="month" class="data-select">
+                    <div id="current-month"></div>
+                    <ul id="month-list" class="hidden ul-selection">
+                    </ul>
+                </div>
+                <div id="vacation" class="data-select">
+                    <div id="display-vacation">2016假期安排</div>
+                    <ul id="vacation-list" class="hidden ul-selection">
+                        <li>元旦</li>
+                        <li>除夕</li>
+                        <li>春节</li>
+                        <li>清明节</li>
+                        <li>劳动节</li>
+                        <li>端午节</li>
+                        <li>中秋节</li>
+                        <li>国庆节</li>
+                    </ul>
+                </div>
+                <div id="today">今天</div>
+            </div>
+            <table id="calendar">
+                <thead>
+                <tr id="week">
+                    <th>一</th>
+                    <th>二</th>
+                    <th>三</th>
+                    <th>四</th>
+                    <th>五</th>
+                    <th>六</th>
+                    <th>七</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="right">
+            <p id="right-date"></p>
+            <div id="right-day"></div>
+            <div id="right-cn-date"></div>
+        </div>
+    </div>
+    <script src="js/requireJS-2.2.0.min.js" data-main="js/main"></script>
+</body>
+</html>
