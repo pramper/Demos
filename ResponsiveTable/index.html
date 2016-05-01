@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1" />
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{font-size: 18px;}
+        table{
+            width: 80%;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        table tr{
+            border: 1px solid #ddd;
+        }
+        table td, table th{
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1px;
+            padding: 10px;
+        }
+        @media screen and (max-width: 700px) {
+            table{
+                width: 90%;
+                border: none;
+            }
+            thead{
+                display: none;
+            }
+            table tr{
+                display: block;
+                margin-top: 20px;
+            }
+            table td{
+                display: block;
+                border-bottom: 1px solid #ccc;
+                text-align: right;
+            }
+            table td:last-child{
+                border-bottom: none;
+            }
+            table td::before{
+                content: attr(data-label);
+                float: left;
+                margin-left: 10px;
+                font-weight: bold;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <table>
+      <thead>
+        <tr>
+          <th>支付</th>
+          <th>日期</th>
+          <th>金额</th>
+          <th>周期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="支付">支付 #1</td>
+          <td data-label="日期">02/01/2015</td>
+          <td data-label="金额">$2,311</td>
+          <td data-label="周期">01/01/2015 - 01/31/2015</td>
+        </tr>
+        <tr>
+          <td data-label="支付">支付 #2</td>
+          <td data-label="日期">03/01/2015</td>
+          <td data-label="金额">$3,211</td>
+          <td data-label="周期">02/01/2015 - 02/28/2015</td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>
