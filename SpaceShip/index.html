@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task 26</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+    <div id="container">
+        <div id="left">
+            <fieldset id="command-log">
+                <legend>Command Log</legend>
+                <ul id="command-list"></ul>
+            </fieldset>
+            <fieldset id="controller">
+                <legend>Controller</legend>
+                <div class="row" id="ship01">
+                    <span>SpaceShip Num.1：</span>
+                    <button class="create-ship" data-com="createShip">飞船就绪</button>
+                    <button class="start-ship" data-com="fly">起飞</button>
+                    <button class="stop-ship" data-com="stop">停止</button>
+                    <button class="destroy-self" data-com="destroySelf">自毁</button>
+                </div>
+                <div class="row" id="ship02">
+                    <span>SpaceShip Num.2：</span>
+                    <button class="create-ship" data-com="createShip">飞船就绪</button>
+                    <button class="start-ship" data-com="fly">起飞</button>
+                    <button class="stop-ship" data-com="stop">停止</button>
+                    <button class="destroy-self" data-com="destroySelf">自毁</button>
+                </div>
+                <div class="row" id="ship03">
+                    <span>SpaceShip Num.3：</span>
+                    <button class="create-ship" data-com="createShip">飞船就绪</button>
+                    <button class="start-ship" data-com="fly">起飞</button>
+                    <button class="stop-ship" data-com="stop">停止</button>
+                    <button class="destroy-self" data-com="destroySelf">自毁</button>
+                </div>
+                <div class="row" id="ship04">
+                    <span>SpaceShip Num.4：</span>
+                    <button class="create-ship" data-com="createShip">飞船就绪</button>
+                    <button class="start-ship" data-com="fly">起飞</button>
+                    <button class="stop-ship" data-com="stop">停止</button>
+                    <button class="destroy-self" data-com="destroySelf">自毁</button>
+                </div>
+            </fieldset>
+        </div>
+        <div id="right">
+            <canvas id="static"></canvas>
+            <canvas id="dynamic"></canvas>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>

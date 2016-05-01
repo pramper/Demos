@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 10px;
+}
+#container{
+    display: flex;
+    width: 1100px;
+    height: 700px;
+    margin: 50px auto;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+}
+#left{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+    padding: 0 5px;
+}
+#command-log{
+    flex: 1;
+}
+#controller{
+    flex: 0;
+    margin-bottom: 5px;
+}
+#command-log, #controller{
+    text-align: center;
+    border-radius: 5px;
+}
+.row{
+    margin: 4px 0;
+}
+.row span{
+    font-size: 1.4rem;
+}
+.row button{
+    font-size: 1.4rem;
+    cursor: pointer;
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 1px 2px;
+    transition: background-color 0.1s ease;
+}
+.row button:hover{
+    background-color: #000;
+    color: #fff;
+}
+#left legend{
+    font-size: 2rem;
+}
+#command-list li{
+    text-align: left;
+    font-size: 1.4rem;
+    list-style: none;
+}
+.red-font{
+    color: red;
+}
+#right{
+    position: relative;
+    flex: 7;
+    height: inherit;
+    background-image: url(../images/space01.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#static, #dynamic{
+    position: absolute;
+}
