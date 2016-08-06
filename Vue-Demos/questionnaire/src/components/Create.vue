@@ -103,9 +103,13 @@
 </template>
 <script>
     import Calendar from './Calendar'
-    import {save} from '../store'
     import Mask from './Mask'
-    import router from '../main'
+    import VueRouter from 'vue-router'
+    import Vue from 'vue'
+
+    Vue.use(VueRouter)
+
+    var router = new VueRouter()
 
     export default{
         data() {

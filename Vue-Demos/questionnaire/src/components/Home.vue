@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <div class="home-empty" v-if="!hasQuest">
-            <button class="home-empty_create" type="button" v-link="'edit'">
+            <button class="home-empty_create" type="button" v-link="'create'">
                 <i class="fa fa-plus"></i>&nbsp;&nbsp;新建问卷
             </button>
         </div>
@@ -49,9 +49,9 @@
     </div>
 </template>
 <script>
-    import {fetchStore} from '../store'
     import Mask from './Mask'
 
+    
     export default{
         data() {
             return {

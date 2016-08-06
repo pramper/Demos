@@ -98,7 +98,11 @@
 <script>
     import Calendar from './Calendar'
     import Mask from './Mask'
-    import router from '../main'
+    import VueRouter from 'vue-router'
+    import Vue from 'vue'
+
+    Vue.use(VueRouter)
+    var router = new VueRouter()
 
     export default{
         data() {
@@ -204,7 +208,6 @@
                     this.questItem.name = new Date().getTime()
                 }
                 this.showMask = false
-                console.log(this.questItems)
                 this.questItems.push(this.questItem)
                 this.questItem = {}
             }
