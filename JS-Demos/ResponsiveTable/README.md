@@ -1,6 +1,6 @@
 ## 纯CSS实现自适应table
 
-[demo](http://pramper.github.io/Demos/ResponsiveTable/)
+[demo](http://pramper.github.io/Demos/JS-Demos/ResponsiveTable/)
 
 - 在屏幕宽度大于700px时显示
 

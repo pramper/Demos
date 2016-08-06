@@ -1,3 +1,4 @@
-## Task 7
+## 一个简单的超频页面，锻炼一下页面布局能力
 
-[demo](https://front-turing.github.io/BaiDu-IFE/Lin/The-First-Stage/Task7/)
+[demo](http://pramper.github.io/Demos/JS-Demos/ResponsiveTable/)
+

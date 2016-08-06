@@ -1,4 +1,4 @@
-[demo](http://pramper.github.io/Demos/Calendar/)
+[demo](http://pramper.github.io/Demos/JS-Demos/Calendar/)
 
 - 基本功能都已实现，使用requrieJS进行了模块化封装
 - 国际节假日中只实现了的日常的节假日，
