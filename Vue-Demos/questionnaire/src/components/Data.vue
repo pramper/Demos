@@ -5,33 +5,14 @@
                 <h2 v-text="questionnaire.title" class="quest-title_preview"></h2>
             </div>
             <div v-for="questItem in questionnaire.questItemList" class="questItem-data" track-by="$index">
-                <!-- <div>
-                    <p class="questItem-title">
-                        <span>{{$index+1}}、{{typeMap[questItem.type]}}：</span>
-                        <span v-text="questItem.title"></span>
-                    </p>
-                    <div v-if="questItem.type==='textarea'">
-                        <textarea></textarea>
-                    </div>
-                    <div v-else>
-                        <div v-for="selection in questItem.selections" class="selection">
-                            <input :type="questItem.type" :name="questItem.name" 
-                                :id="questItem.name+$index"
-                                :class="questItem.type"/>
-                            <label v-text="selection" :for="questItem.name+$index"></label>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="chart" v-echarts="questItem"></div>
-
             </div>
         </div>
         <p class="preview-deadline">问卷截止日期：{{new Date(questionnaire.deadline).toLocaleDateString()}}</p>
     </div>
 </template>
 <script>
-    import echarts from 'echarts'
-    import Vue from 'vue'
+    import echarts from '../echarts'
 
     export default{
         data() {
@@ -73,7 +54,7 @@
             'echarts': {
                 bind: function() {
                     let self = this
-                    Vue.nextTick(function() {
+                    this.vm.$nextTick(function() {
                         self.instance = echarts.init(self.el)
                     })
                 },
@@ -124,7 +105,7 @@
                             }]
                         }
                     }
-                    Vue.nextTick(function() {
+                    this.vm.$nextTick(function() {
                         self.instance.setOption(option)
                     })
                     

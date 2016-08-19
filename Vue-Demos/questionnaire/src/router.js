@@ -3,31 +3,29 @@ import App from './App'
 export function configRouter(router) {
     router.map({
         '/index': {
-            component: require('./components/Index')
-        },
-        // 每个问卷都有一个唯一的ID，先用时间戳来表示
-        /*'/questionnaire/:id': {
-            component: require('./components/Questionnaire'),
-            subRoutes: {
-                '/edit': {
-                    component: require('./components/Edit')
-                },
-                'preview': {
-                    component: require('./components/Preview')
-                }
+            component: function(resolve) {
+                require(['./components/Index'], resolve)
             }
-        },*/
+        },
         '/create': {
-            component: require('./components/Create')
+            component: function(resolve) {
+                require(['./components/Create'], resolve)
+            }
         },
         '/edit/:questId': {
-            component: require('./components/Edit')
+            component: function(resolve) {
+                require(['./components/Edit'], resolve)
+            }
         },
         '/preview/:questId': {
-            component: require('./components/Preview')
+            component: function(resolve) {
+                require(['./components/Preview'], resolve)
+            }
         },
         '/data/:questId': {
-            component: require('./components/Data')
+            component: function(resolve) {
+                require(['./components/Data'], resolve)
+            }
         }
     })
     router.redirect({

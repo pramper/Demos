@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin(/*chunkName=*/'common', /*filename=*/'common.js');
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: './src/main.js',
@@ -20,7 +22,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        exclude: [/node_modules/, /echarts.js/]
       },
       {
         test: /\.json$/,
@@ -37,14 +39,6 @@ module.exports = {
       {
         test: /\.less$/,
         loader: 'style!css!less'
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: '[name].[ext]?[hash]'
-        }
       }
     ]
   },
@@ -55,7 +49,8 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [commonsPlugin, new ExtractTextPlugin("[name].css")]
 }
 
 if (process.env.NODE_ENV === 'production') {
