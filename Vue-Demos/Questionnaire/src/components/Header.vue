@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-        <h1><a v-link="'#/index'">问卷管理</a></h1>
+        <h1><a v-link="'#/index'"><i class="fa fa-question-circle-o"></i>&nbsp;问卷管理</a></h1>
         <h2>我的问卷</h2>
     </div>
 </template>
@@ -26,10 +26,7 @@
                 color: #fff;
             }
         }
-        h1::before{
-            content: '\f29c';
-            margin-right: 5px;
-        }
+        
         
         h2{
             font-size: 0.18rem;
