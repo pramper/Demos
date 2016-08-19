@@ -1,7 +1,7 @@
 import App from './App'
 
 export function configRouter(router) {
-    router.map({
+    /*router.map({
         '/index': {
             component: function(resolve) {
                 require(['./components/Index'], resolve)
@@ -27,7 +27,24 @@ export function configRouter(router) {
                 require(['./components/Data'], resolve)
             }
         }
-    })
+    })*/
+    router.map({
+            '/index': {
+                component: require('./components/Index')
+            },
+            '/create': {
+                component: require('./components/Create')
+            },
+            '/edit/:questId': {
+                component: require('./components/Edit')
+            },
+            '/preview/:questId': {
+                component: require('./components/Preview')
+            },
+            '/data/:questId': {
+                component: require('./components/Data')
+            }
+        })
     router.redirect({
         '*': '/index'
     })
