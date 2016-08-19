@@ -4,7 +4,7 @@
 
 任务基于百度ife[任务四](http://ife.baidu.com/task/detail?taskId=50)
 
-[demo](http://pramper.github.io/Demos/Vue-Demos/Questionnaire/dist)
+[demo](http://pramper.github.io/Demos/Vue-Demos/New-Questionnaire/dist)
 ## 任务目的
 
  - 基于阶段三的各个组件，学习模块化、前端工程等内容，综合运用HTML，CSS，JavaScript完成一个小型完整网站的实现
