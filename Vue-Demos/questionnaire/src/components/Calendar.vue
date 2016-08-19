@@ -110,7 +110,8 @@
     }
 </script>
 <style lang="less">
-    @import "../style";
+    @import "../color";
+
     #calendar{
         // display: none;
         width: 300px;

@@ -1,150 +1,170 @@
+/**
+ * 问卷的存储格式：
+ * var questionnaire = {
+ *     title: String,
+ *     deadline: Number,
+ *     state: String [未发布、已发布、已结束],
+ *     id: Date.now(), 每一个问卷都有一个唯一的ID
+ *     questItemList: Array [questItem] 
+ * }
+ * var questItem = {
+ *     type: radio, checkbox, textarea,
+ *     title: '',
+ *     name: Date.now()
+ *     selections: []
+ * }
+ *使用localStorage来存储：KEY: questionnaireList, type: Array
+ */
+
 import Vuex from 'vuex'
 import Vue from 'vue'
 
 Vue.use(Vuex)
 
-// localStorage操作
-const KEY = "questionnaire"
-var demo01 = [{
-    "title": "问卷一",
-    "deadline": "2016/8/30",
-    "questItems": [
+const KEY = 'questionnaireList'
+let questionnaire01 = {
+    "title": "问卷调查一",
+    "deadline": 1471622400000,
+    "state": "未发布",
+    "questItemList": [
         {
             "type": "radio",
-            "desc": "性别",
+            "title": "性别",
             "selections": [
                 "男",
                 "女"
             ],
-            "name": 1470485669566
+            "name": 1471528977004
         },
         {
             "type": "checkbox",
-            "desc": "爱好",
+            "title": "爱好",
             "selections": [
                 "篮球",
                 "足球",
-                "排球"
+                "网球"
             ],
-            "name": 1470485683971
-        },
-        {
-            "type": "radio",
-            "desc": "年收入",
-            "selections": [
-                "1万以下",
-                "1-2万",
-                "2-3万",
-                "3万以上"
-            ],
-            "name": 1470485776238
+            "name": 1471528987079
         },
         {
             "type": "textarea",
-            "desc": "自我评价"
+            "title": "自我评价"
         }
     ],
-    "state": "已发布"
-},
-{
-    "title": "问卷二",
-    "deadline": "2016/9/30",
-    "questItems": [
-        {
-            "type": "radio",
-            "desc": "性别",
-            "selections": [
-                "男",
-                "女"
-            ],
-            "name": 1470485669566
-        },
-        {
-            "type": "checkbox",
-            "desc": "爱好",
-            "selections": [
-                "篮球",
-                "足球",
-                "排球"
-            ],
-            "name": 1470485683971
-        },
-        {
-            "type": "radio",
-            "desc": "年收入",
-            "selections": [
-                "1万以下",
-                "1-2万",
-                "2-3万",
-                "3万以上"
-            ],
-            "name": 1470485776238
-        },
-        {
-            "type": "textarea",
-            "desc": "自我评价"
-        }
-    ],
-    "state": "未发布"
+    "id": 1471528999124
 }
-]
-
-// localStorage.setItem("questionnaire", JSON.stringify(demo01))
+let questionnaire02 = {
+    "title": "问卷调查二",
+    "deadline": 1471622400000,
+    "state": "已发布",
+    "questItemList": [
+        {
+            "type": "radio",
+            "title": "性别",
+            "selections": [
+                "男",
+                "女"
+            ],
+            "name": 1471528977004
+        },
+        {
+            "type": "checkbox",
+            "title": "爱好",
+            "selections": [
+                "篮球",
+                "足球",
+                "网球"
+            ],
+            "name": 1471528987079
+        },
+        {
+            "type": "textarea",
+            "title": "自我评价"
+        }
+    ],
+    "id": 1471528999124
+}
+let questionnaire03 = {
+    "title": "问卷调查三",
+    "deadline": 1471622400000,
+    "state": "已发布",
+    "questItemList": [
+        {
+            "type": "radio",
+            "title": "性别",
+            "selections": [
+                "男",
+                "女"
+            ],
+            "name": 1471528977004
+        },
+        {
+            "type": "checkbox",
+            "title": "爱好",
+            "selections": [
+                "篮球",
+                "足球",
+                "网球"
+            ],
+            "name": 1471528987079
+        },
+        {
+            "type": "textarea",
+            "title": "自我评价"
+        }
+    ],
+    "id": 1471528999124
+}
 if(!localStorage.getItem(KEY)) {
-    // 存入一个数组
-    localStorage.setItem(KEY, JSON.stringify(demo01))
-}
-var fetchStore = function() {
-    return JSON.parse(localStorage.getItem(KEY)) //返回一个数组对象
-}
-var save = function(data) {
-    let questionnaire = fetchStore()
-    questionnaire.push(data)
-    localStorage.setItem(KEY, JSON.stringify(questionnaire))
+    localStorage.setItem(KEY, JSON.stringify([questionnaire01, questionnaire02, questionnaire03]))
 }
 
-// vuex相关
 const state = {
-    questionnaireList: fetchStore(), // 取得所有的调查问卷
-    questionnaire: {}  // 其中一个调查问卷
+    questionnaireList: JSON.parse(localStorage.getItem(KEY)),   // 所有的调查问卷,type: Array
+    currentQuestionnaire: null  // 当前正在操作的调查问卷, type: {}
 }
 
 const mutations = {
-    //更新一个调查问卷，以下的item参数均表示为一个调查问卷
+    // 增加一个新的问卷，item即为新的问卷
+    ADD_QUEST(state, item) {
+        state.questionnaireList.push(item)
+        state.currentQuestionnaire = item
+        updateStorage(state)
+    },
+    // 删除一个问卷，item即为将要被删除的问卷
+    RM_QUEST(state, item) {
+        let index = state.questionnaireList.indexOf(item)
+        if(item !== -1) {
+            state.questionnaireList.splice(index, 1)
+            updateStorage(state)
+        } else {
+            throw new Error("该问卷不存在！")
+        }
+    },
+    // 保存一个问卷，用于对还未发布的问卷的更新
     UPDATE_QUEST(state, item) {
         let index = state.questionnaireList.indexOf(item)
-        state.questionnaireList.splice(index, 1, item)
-        localStorage.setItem(KEY, JSON.stringify(state.questionnaireList))
-    },
-    // 获取一个调查问卷
-    GET_QUEST(state, item) {
-        state.questionnaire = item
-    },
-    // 保存一个调查问卷
-    SAVE(state, item) {
-        state.questionnaireList.push(item)
-        localStorage.setItem(KEY, JSON.stringify(state.questionnaireList))
-    },
-    // 发表一个调查问卷
-    PUBLISH(state, item) {
-        let index = state.questionnaireList.indexOf(item)
-        if(index === -1) {
-            state.questionnaireList.push(item)
-        } else {
+        if(index !== -1) {
             state.questionnaireList.splice(index, 1, item)
+            state.currentQuestionnaire = item
+            updateStorage(state)
+        } else {
+            throw new Error("该问卷不存在！")
         }
-        localStorage.setItem(KEY, JSON.stringify(state.questionnaireList))
     },
-    //删除一个调查问卷
-    DELETE_ONE(state, item) {
-        let index = state.questionnaireList.indexOf(item)
-        state.questionnaireList.splice(index, 1)
-        localStorage.setItem(KEY, JSON.stringify(state.questionnaireList))
+    // 设置当前需要操作的问卷
+    SET_QUEST(state, item) {
+        if(state.currentQuestionnaire === item) {return}
+        state.currentQuestionnaire = item
     }
 }
 
+// 每当questionnaire有更新时，就更新localStorage
+function updateStorage(state) {
+    localStorage.setItem(KEY, JSON.stringify(state.questionnaireList))
+}
+
 export default new Vuex.Store({
-    state,
+    state, 
     mutations
 })
-

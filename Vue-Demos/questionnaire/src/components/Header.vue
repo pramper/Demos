@@ -1,39 +1,40 @@
 <template>
     <div id="header">
-        <h1 class="header-manage"><a v-link="'home'"><i class="fa fa-question-circle-o"></i>&nbsp;问卷管理</a></h1>
-        <h2 class="header-mine">我的问卷</h2>
+        <h1><a v-link="'#/index'">问卷管理</a></h1>
+        <h2>我的问卷</h2>
     </div>
 </template>
 <script>
+    
 </script>
 <style lang="less">
-    @import "../style.less";
+    @import '../color.less';
 
     #header{
-        display: flex;
         width: 100%;
-        height: 40px;
+        height: 0.4rem;
         background-color: @base;
-        color: #fff;
-        line-height: 40px;
+        display: flex;
         justify-content: flex-start;
-        align-item: center;
-        .header-manage a{
-            display: inline-block;
-            color: #fff;
-            font-size: 20px;
-        }
-        .header-mine, .header-manage{
-            line-height: 40px;
-        }
-        .header-manage{
+        align-items: center;
+        color: #fff;
+        h1{
+            font-size: 0.22rem;
             font-weight: bold;
-            margin-left: 30px;
+            margin-left: 0.22rem;
+            a{
+                color: #fff;
+            }
         }
-        .header-mine{
-            font-size: 16px;
+        h1::before{
+            content: '\f29c';
+            margin-right: 5px;
+        }
+        
+        h2{
+            font-size: 0.18rem;
             font-weight: normal;
-            margin-left: 40px;
+            margin-left: 0.25rem;
         }
     }
 </style>

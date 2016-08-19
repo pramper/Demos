@@ -1,19 +1,28 @@
 <template>
-    <div id="preview">
-        <h2 v-text="questionnaire.title" class="quest-title"></h2>
-        <div v-for="(index, item) in questionnaire.questItems" class="quest-item">
-            <div v-if="item.type==='radio'||item.type==='checkbox'">
-                <p><span>Q{{index+1}}&nbsp;</span>{{typeMap[item.type]}}：{{item.desc}}</p>
-                <label v-for="selection in item.selections">
-                    <input :type="item.type" :name="item.name" />&nbsp;&nbsp;{{selection}}
-                </label>
+    <div id="create" v-if="!$loadingRouteData">
+        <div class="quest">
+            <div class="quest-title">
+                <h2 v-text="questionnaire.title" class="quest-title_preview"></h2>
             </div>
-            <div v-else>
-                <p><span>Q{{index+1}}&nbsp;</span>{{item.desc}}</p>
-                <textarea v-else></textarea>
+            <div v-for="questItem in questionnaire.questItemList" class="questItem" track-by="$index">
+                <p class="questItem-title">
+                    <span>{{$index+1}}、{{typeMap[questItem.type]}}：</span>
+                    <span v-text="questItem.title"></span>
+                </p>
+                <div v-if="questItem.type==='textarea'">
+                    <textarea></textarea>
+                </div>
+                <div v-else>
+                    <div v-for="selection in questItem.selections" class="selection">
+                        <input :type="questItem.type" :name="questItem.name" 
+                            :id="questItem.name+$index"
+                            :class="questItem.type"/>
+                        <label v-text="selection" :for="questItem.name+$index"></label>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="deadline">截止时间：{{questionnaire.deadline}}</p>
+        <p class="preview-deadline">问卷截止日期：{{new Date(questionnaire.deadline).toLocaleDateString()}}</p>
     </div>
 </template>
 <script>
@@ -21,52 +30,52 @@
         data() {
             return {
                 typeMap: {
-                    radio: "单选题",
-                    checkbox: "多选题"
+                    radio: '单选',
+                    checkbox: '多选',
+                    textarea: '问答'
                 }
             }
         },
         vuex: {
             getters: {
-                questionnaire: state => state.questionnaire
+                questionnaire: state => state.currentQuestionnaire,
+                questionnaireList: state => state.questionnaireList
+            },
+            actions: {
+                setCurrentQuest({dispatch}, item) {
+                    dispatch("SET_QUEST", item)
+                }
+            }
+        },
+        route: {
+            data({to, next}) {
+                let id = to.params.questId
+                if(!this.questionnaire) {
+                    this.questionnaireList.forEach(item => {
+                        if(parseInt(item.id) === parseInt(id)) {
+                            this.setCurrentQuest(item)
+                            return
+                        }
+                    })
+                }
+                next()
             }
         }
     }
 </script>
 <style lang="less">
-    #preview{
-        width: 1000px;
-        margin: 40px auto;
-        background-color: #fff;
-        box-sizing: border-box;
-        padding: 20px;
-        font-size: 16px;
-        .deadline{
+    #create{
+        .preview-deadline{
+            font-size: .14rem;
+            margin-top: .2rem;
             text-align: center;
-            font-size: 14px;
         }
-        .quest-title{
-            font-size: 30px;
+        .quest-title_preview{
+            text-align: center;
+            letter-spacing: .05rem;
+            font-size: .28rem;
             font-weight: bold;
-            text-align: center;
-            border-bottom: 1px solid #ccc;
-            height: 70px;
-            line-height: 70px;
-        }
-        .quest-item{
-            width: 93%;
-            margin: 20px auto;
-            label, textarea{
-                margin-top: 20px;
-                margin-left: 20px;
-                display: block;
-            }
-            textarea{
-                overflow: hidden;
-                resize: none; 
-                width: 350px;
-                height: 150px;
-            }
         }
     }
 </style>
+
